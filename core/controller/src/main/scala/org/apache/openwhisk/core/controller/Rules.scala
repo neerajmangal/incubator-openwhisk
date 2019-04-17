@@ -239,7 +239,7 @@ trait WhiskRulesApi extends WhiskCollectionAPI with ReferencedEntities {
         }
 
         onComplete(getRuleWithStatus) {
-          case Success(r) => complete(OK, r)
+          case Success(r) => completeAsRuleResponse(rule, r.status)
           case Failure(t) => terminate(InternalServerError)
         }
       })
